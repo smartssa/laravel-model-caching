@@ -99,15 +99,8 @@ class CacheKey
 
         $orders = collect($this->query->orders);
 
-        return $orders
-            ->reduce(function ($carry, $order) {
-                if (($order["type"] ?? "") === "Raw") {
-                    return $carry . "_orderByRaw_" . (new Str)->slug($order["sql"]);
-                }
+	return "_orderBy_" . Str::slug(json_encode($orders));
 
-                return $carry . "_orderBy_" . $order["column"] . "_" . $order["direction"];
-            })
-            ?: "";
     }
 
     protected function getQueryColumns(array $columns) : string
