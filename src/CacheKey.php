@@ -99,7 +99,7 @@ class CacheKey
 
         $orders = collect($this->query->orders);
 
-	return "_orderBy_" . Str::slug(json_encode($orders));
+        return "_orderBy_" . Str::slug(json_encode($orders));
 
     }
 
